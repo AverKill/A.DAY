@@ -16,6 +16,9 @@ async function getAllInfo() {
   }
 }
 
+const habitBtn = document.getElementById("habitBtn");
+habitBtn.addEventListener("click", requestHabit);
+
 async function requestHabit(e) {
   e.preventDefault();
   try {
@@ -35,27 +38,14 @@ async function requestHabit(e) {
     };
 
     const response = await fetch("http://localhost:3001/habits", options);
-
     const r = await fetch(
       `http://localhost:3001/habits/${localStorage.getItem("username")}`
     );
     const data = await r.json();
-    console.log(data);
-    // if (data.status === ) {
-    //   throw new Error("Habit is not valid");
-    // }
-    // window.location.href = 'habitTracker.html';
-    renderFeed();
   } catch (err) {
     console.warn(err);
   }
 }
-
-const habitBtn = document.getElementById("habitBtn");
-habitBtn.addEventListener("click", (e) => {
-  console.log(e);
-  requestHabit(e);
-});
 
 //  Add Habit function
 
